@@ -2,9 +2,15 @@ import mongoose, { Schema, Document, Model } from 'mongoose'
 import { config as dotEnvConfig } from 'dotenv'
 dotEnvConfig()
 
-const mongoDbUri = `mongodb://${process.env.MONGO_INITDB_ROOT_USERNAME}:${process.env.MONGO_INITDB_ROOT_PASSWORD}@localhost:27017/`
+const DB_CONFIG = {
+  USER: encodeURIComponent(process.env.MONGO_INITDB_ROOT_USERNAME || ''),
+  PASS: encodeURIComponent(process.env.MONGO_INITDB_ROOT_PASSWORD || ''),
+  DB: process.env.DB || '',
+}
+
+const mongoDbUri = `mongodb://${DB_CONFIG.USER}:${DB_CONFIG.PASS}@localhost:27017/${DB_CONFIG.DB}?authSource=admin`
 
 export const connect = async () => {
-  return await mongoose.connect(mongoDbUri)
+  await mongoose.connect(mongoDbUri)
 }
 export const db = mongoose

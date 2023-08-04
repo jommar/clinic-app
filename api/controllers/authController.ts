@@ -6,32 +6,36 @@ import { config } from 'dotenv'
 config
 
 export const login = async (req: Request, res: Response) => {
-  const { body } = req
-  if (!body.username) {
-    res.status(400).json({ message: 'Invalid credentials' })
-    return
-  }
-  if (!body.password) {
-    res.status(400).json({ message: 'Invalid credentials' })
-    return
-  }
+  try {
+    const { body } = req
+    if (!body.username) {
+      res.status(400).json({ message: 'Invalid credentials' })
+      return
+    }
+    if (!body.password) {
+      res.status(400).json({ message: 'Invalid credentials' })
+      return
+    }
 
-  const user = await models.User.findOne({ username: body.username })
-  if (!user) {
-    res.status(400).json({ message: `User not found: ${body.username}` })
-    return
-  }
-  const validPassword = await bcrypt.compare(body.password, user.password)
-  if (!validPassword) {
-    res.status(400).json({ message: 'Invalid credentials' })
-    return
-  }
-  const token = jwt.sign({ id: user._id }, process.env.JWT_KEY, {
-    expiresIn: '1h',
-  })
-  req.session.user = body.username
+    const user = await models.User.findOne({ username: body.username })
+    if (!user) {
+      res.status(400).json({ message: `User not found: ${body.username}` })
+      return
+    }
+    const validPassword = await bcrypt.compare(body.password, user.password)
+    if (!validPassword) {
+      res.status(400).json({ message: 'Invalid credentials' })
+      return
+    }
+    const token = jwt.sign({ id: user._id }, process.env.JWT_KEY, {
+      expiresIn: '1h',
+    })
+    req.session.user = body.username
 
-  res.send({ token })
+    res.send({ token })
+  } catch (e) {
+    res.send({ message: e.message })
+  }
 }
 
 export const logout = (req: Request, res: Response) => {

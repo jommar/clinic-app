@@ -17,7 +17,11 @@ const connectDb = async () => {
       console.log(chalk.greenBright('DB Connected'))
     })
     .catch((e) => {
-      console.log(chalk.redBright(`Could not connect to database ${process.env.DB}: ${e.message}`))
+      console.log(
+        chalk.redBright(
+          `Could not connect to database ${process.env.DB}: ${e.message}`,
+        ),
+      )
     })
 }
 
@@ -34,6 +38,7 @@ app.use(timeLogger)
 app.use('/auth', routes.authRoutes)
 app.use(authenticate)
 app.use('/user', routes.userRoutes)
+app.use('/db', routes.dbRoutes)
 
 app.listen(port, () => {
   console.log(chalk.greenBright(`Server started on port: ${port}`))
