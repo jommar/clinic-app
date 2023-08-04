@@ -31,3 +31,16 @@ export const readDocument = async (req: Request, res: Response) => {
     res.status(400).json({ message: e.message })
   }
 }
+
+export const updateById = async (req: Request, res: Response) => {
+  try {
+    const { model, id } = req.params
+    const { body } = req
+    const document = await models[model].findByIdAndUpdate(id, body, {
+      new: true,
+    })
+    res.send(document)
+  } catch (e) {
+    res.status(400).json({ message: e.message })
+  }
+}
