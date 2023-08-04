@@ -27,7 +27,7 @@ const contactSchema = new mongoose.Schema({
   },
 })
 
-const patientSchema = new mongoose.Schema({
+export const PatientSchema = new mongoose.Schema({
   resourceType: {
     type: String,
     default: 'Patient',
@@ -107,6 +107,6 @@ const patientSchema = new mongoose.Schema({
   ],
 })
 
-const Patient = mongoose.model('Patient', patientSchema)
+const Patient = mongoose.model('Patient', PatientSchema)
 
 export default Patient

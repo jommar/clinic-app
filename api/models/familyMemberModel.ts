@@ -17,7 +17,7 @@ const ConditionSchema = new mongoose.Schema({
   onsetPeriod: String,
 })
 
-const FamilyMemberHistorySchema = new mongoose.Schema({
+export const FamilyMemberHistorySchema = new mongoose.Schema({
   identifier: [
     {
       use: String,
