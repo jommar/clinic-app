@@ -4,11 +4,22 @@ import routes from './routes'
 import { timeLogger, authenticate } from './middlewares'
 import chalk from 'chalk'
 import session from 'express-session'
+import { connect } from './lib/mongose'
 
 dotenv.config()
 
 const app: Express = express()
 const port = process.env.PORT
+
+const connectDb = async () => {
+  await connect()
+    .then((r) => {
+      console.log(chalk.greenBright('DB Connected'))
+    })
+    .catch((e) => {
+      console.log(chalk.redBright(`Could not connect to database ${process.env.DB}: ${e.message}`))
+    })
+}
 
 app.use(
   session({
@@ -28,3 +39,5 @@ app.listen(port, () => {
   console.log(chalk.greenBright(`Server started on port: ${port}`))
   console.log(chalk.greenBright(`http://localhost:${port}`))
 })
+
+connectDb()
