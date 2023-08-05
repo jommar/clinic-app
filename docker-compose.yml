@@ -1,21 +1,31 @@
 version: "3.8"
+
 services:
   mongodb:
     image: mongo:latest
     container_name: mongodb
-    command: --auth
+    command: --auth --bind_ip 0.0.0.0
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     volumes:
       - mongodb_data:/data/db
+      - mongodb_config:/etc/mongo
+      - mongodb_logs:/var/log/mongodb
     networks:
       - mongo-network
     ports:
       - "27017:27017"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "50"
 
 volumes:
   mongodb_data:
+  mongodb_config:
+  mongodb_logs:
 
 networks:
   mongo-network:
