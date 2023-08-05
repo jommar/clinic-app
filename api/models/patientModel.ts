@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const contactSchema = new mongoose.Schema({
+export const ContactSchema = new mongoose.Schema({
   relationship: String,
   name: {
     use: String,
@@ -91,7 +91,7 @@ export const PatientSchema = new mongoose.Schema({
   },
   multipleBirthBoolean: Boolean,
   multipleBirthInteger: Number,
-  contact: [contactSchema],
+  contact: [ContactSchema],
   communication: [
     {
       language: {

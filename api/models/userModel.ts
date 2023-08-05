@@ -1,9 +1,9 @@
 // models/User.ts
-import * as db from 'mongoose'
+import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
 import validator from 'validator'
 
-export const UserSchema = new db.Schema(
+export const UserSchema = new mongoose.Schema(
   {
     username: {
       type: String,
@@ -46,6 +46,6 @@ UserSchema.pre('save', async function (next) {
   next()
 })
 
-export const User = db.model('User', UserSchema)
+export const User = mongoose.model('User', UserSchema)
 
 export default User

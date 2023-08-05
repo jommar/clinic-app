@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const ConditionSchema = new mongoose.Schema({
+export const ConditionSchema = new mongoose.Schema({
   code: {
     coding: [
       {
