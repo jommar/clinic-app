@@ -1,0 +1,122 @@
+{
+  "Basic Commands": {
+    "Run a container": {
+      "command": "docker run IMAGE_NAME",
+      "description": "Start a new container instance from the specified image."
+    },
+    "List running containers": {
+      "command": "docker ps",
+      "description": "Display a list of currently running containers."
+    },
+    "List all containers": {
+      "command": "docker ps -a",
+      "description": "Display a list of all containers, including those that are stopped."
+    },
+    "Stop a container": {
+      "command": "docker stop CONTAINER_ID/NAME",
+      "description": "Gracefully stop a running container."
+    },
+    "Remove a container": {
+      "command": "docker rm CONTAINER_ID/NAME",
+      "description": "Delete a container. If it's running, it needs to be stopped first."
+    },
+    "Run a command inside a running container": {
+      "command": "docker exec -it CONTAINER_ID/NAME COMMAND",
+      "description": "Execute a specific command inside an already running container."
+    },
+    "Fetch logs of a container": {
+      "command": "docker logs CONTAINER_ID/NAME",
+      "description": "Retrieve logs from a container."
+    }
+  },
+  "Image Commands": {
+    "List all images": {
+      "command": "docker images",
+      "description": "Display a list of images available on the local system."
+    },
+    "Build an image from a Dockerfile": {
+      "command": "docker build -t IMAGE_NAME:TAG PATH_TO_DOCKERFILE",
+      "description": "Build a Docker image from a specified Dockerfile."
+    },
+    "Remove an image": {
+      "command": "docker rmi IMAGE_NAME:TAG",
+      "description": "Delete a Docker image from the local system."
+    },
+    "Pull an image from Docker Hub": {
+      "command": "docker pull IMAGE_NAME:TAG",
+      "description": "Download an image or a repository from a registry."
+    },
+    "Push an image to Docker Hub": {
+      "command": "docker push IMAGE_NAME:TAG",
+      "description": "Upload an image or a repository to a registry."
+    }
+  },
+  "Volume Commands": {
+    "List volumes": {
+      "command": "docker volume ls",
+      "description": "Display a list of all volumes."
+    },
+    "Create a volume": {
+      "command": "docker volume create VOLUME_NAME",
+      "description": "Create a new volume."
+    },
+    "Inspect a volume": {
+      "command": "docker volume inspect VOLUME_NAME",
+      "description": "Display detailed information on a specified volume."
+    },
+    "Remove a volume": {
+      "command": "docker volume rm VOLUME_NAME",
+      "description": "Remove a volume. Ensure no containers are using it before deletion."
+    }
+  },
+  "Network Commands": {
+    "List networks": {
+      "command": "docker network ls",
+      "description": "Display a list of all networks."
+    },
+    "Inspect a network": {
+      "command": "docker network inspect NETWORK_NAME",
+      "description": "Display detailed information on a specified network."
+    },
+    "Create a network": {
+      "command": "docker network create NETWORK_NAME",
+      "description": "Create a new network."
+    },
+    "Remove a network": {
+      "command": "docker network rm NETWORK_NAME",
+      "description": "Delete a network."
+    }
+  },
+  "Docker Compose Commands": {
+    "Start services defined in docker-compose.yml": {
+      "command": "docker-compose up",
+      "description": "Start and run the entire app as defined in the docker-compose.yml file."
+    },
+    "Start services in detached mode": {
+      "command": "docker-compose up -d",
+      "description": "Start services in the background."
+    },
+    "Stop services": {
+      "command": "docker-compose down",
+      "description": "Stop and remove all containers defined in the docker-compose.yml file."
+    },
+    "Build images as defined in docker-compose.yml": {
+      "command": "docker-compose build",
+      "description": "Build or rebuild services as defined in the docker-compose.yml file."
+    },
+    "List services": {
+      "command": "docker-compose ps",
+      "description": "List the status of services defined in the docker-compose.yml file."
+    }
+  },
+  "System Commands": {
+    "Show Docker system information": {
+      "command": "docker info",
+      "description": "Display system-wide information about Docker."
+    },
+    "Remove unused data (clean up)": {
+      "command": "docker system prune",
+      "description": "Remove all unused containers, networks, and images (both dangling and unreferenced)."
+    }
+  }
+}
