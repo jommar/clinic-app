@@ -12,5 +12,6 @@ const mongoDbUri = `mongodb://${DB_CONFIG.USER}:${DB_CONFIG.PASS}@localhost:2701
 
 export const connect = async () => {
   await mongoose.connect(mongoDbUri)
+  return { uri: mongoDbUri }
 }
 export const db = mongoose
